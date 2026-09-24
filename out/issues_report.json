@@ -1,0 +1,450 @@
+{
+  "collection_freshness": [
+    {
+      "age_seconds": 600,
+      "coverage": "complete",
+      "environment": "prod",
+      "freshness": "fresh",
+      "freshness_budget_seconds": 900,
+      "observed_at": "2026-09-16T11:50:00Z",
+      "scope": {
+        "account_id": "111111111111",
+        "environment": "prod",
+        "region": "us-east-1",
+        "resource_types": [
+          "aws_instance",
+          "aws_db_instance"
+        ]
+      },
+      "snapshot_id": "aws-acme-prod-20260916T115000Z",
+      "source_family": "aws",
+      "status": "success",
+      "tenant_id": "acme"
+    },
+    {
+      "age_seconds": 600,
+      "coverage": "complete",
+      "environment": "staging",
+      "freshness": "fresh",
+      "freshness_budget_seconds": 900,
+      "observed_at": "2026-09-16T11:50:00Z",
+      "scope": {
+        "account_id": "222222222222",
+        "environment": "staging",
+        "region": "us-east-1",
+        "resource_types": [
+          "aws_instance",
+          "aws_db_instance"
+        ]
+      },
+      "snapshot_id": "aws-acme-staging-20260916T115000Z",
+      "source_family": "aws",
+      "status": "success",
+      "tenant_id": "acme"
+    },
+    {
+      "age_seconds": 480,
+      "coverage": "complete",
+      "environment": "prod",
+      "freshness": "fresh",
+      "freshness_budget_seconds": 900,
+      "observed_at": "2026-09-16T11:52:00Z",
+      "scope": {
+        "account_id": "111111111111",
+        "environment": "prod",
+        "instance_ids": [
+          "i-00000000000000101"
+        ],
+        "region": "us-east-1",
+        "resource_types": [
+          "aws_instance"
+        ]
+      },
+      "snapshot_id": "aws-bravo-prod-20260916T115200Z",
+      "source_family": "aws",
+      "status": "success",
+      "tenant_id": "bravo"
+    },
+    {
+      "age_seconds": 1200,
+      "coverage": "complete",
+      "environment": null,
+      "freshness": "fresh",
+      "freshness_budget_seconds": 86400,
+      "observed_at": "2026-09-16T11:40:00Z",
+      "scope": {
+        "environments": [
+          "prod",
+          "staging"
+        ]
+      },
+      "snapshot_id": "catalog-acme-20260916T114000Z",
+      "source_family": "catalog",
+      "status": "success",
+      "tenant_id": "acme"
+    },
+    {
+      "age_seconds": 900,
+      "coverage": "complete",
+      "environment": null,
+      "freshness": "fresh",
+      "freshness_budget_seconds": 86400,
+      "observed_at": "2026-09-16T11:45:00Z",
+      "scope": {
+        "environments": [
+          "prod"
+        ]
+      },
+      "snapshot_id": "catalog-bravo-20260916T114500Z",
+      "source_family": "catalog",
+      "status": "success",
+      "tenant_id": "bravo"
+    },
+    {
+      "age_seconds": 300,
+      "coverage": "complete",
+      "environment": "prod",
+      "freshness": "fresh",
+      "freshness_budget_seconds": 900,
+      "observed_at": "2026-09-16T11:55:00Z",
+      "scope": {
+        "account_id": "111111111111",
+        "cluster_id": "acme-prod",
+        "environment": "prod",
+        "kinds": [
+          "Deployment",
+          "ReplicaSet",
+          "Pod",
+          "Node"
+        ],
+        "namespaces": [
+          "production"
+        ],
+        "region": "us-east-1"
+      },
+      "snapshot_id": "k8s-acme-prod-20260916T115500Z",
+      "source_family": "kubernetes",
+      "status": "success",
+      "tenant_id": "acme"
+    },
+    {
+      "age_seconds": 420,
+      "coverage": "complete",
+      "environment": "staging",
+      "freshness": "fresh",
+      "freshness_budget_seconds": 900,
+      "observed_at": "2026-09-16T11:53:00Z",
+      "scope": {
+        "account_id": "222222222222",
+        "cluster_id": "acme-staging",
+        "environment": "staging",
+        "kinds": [
+          "Deployment",
+          "ReplicaSet",
+          "Pod",
+          "Node"
+        ],
+        "namespaces": [
+          "staging"
+        ],
+        "region": "us-east-1"
+      },
+      "snapshot_id": "k8s-acme-staging-20260916T115300Z",
+      "source_family": "kubernetes",
+      "status": "success",
+      "tenant_id": "acme"
+    },
+    {
+      "age_seconds": null,
+      "coverage": "unknown",
+      "environment": "prod",
+      "freshness": "not_observed",
+      "freshness_budget_seconds": 900,
+      "observed_at": null,
+      "scope": {
+        "account_id": "111111111111",
+        "cluster_id": "bravo-prod",
+        "environment": "prod",
+        "kinds": [
+          "Deployment",
+          "ReplicaSet",
+          "Pod",
+          "Node"
+        ],
+        "namespaces": [
+          "production"
+        ],
+        "region": "us-east-1"
+      },
+      "snapshot_id": "k8s-bravo-prod-20260916",
+      "source_family": "kubernetes",
+      "status": "not_provided",
+      "tenant_id": "bravo"
+    },
+    {
+      "age_seconds": 1220400,
+      "coverage": "complete",
+      "environment": "prod",
+      "freshness": "stale",
+      "freshness_budget_seconds": 86400,
+      "observed_at": "2026-09-02T09:00:00Z",
+      "scope": {
+        "account_id": "111111111111",
+        "environment": "prod",
+        "region": "us-east-1",
+        "resource_types": [
+          "aws_instance",
+          "aws_db_instance"
+        ],
+        "workspace_id": "acme-prod-core"
+      },
+      "snapshot_id": "tf-acme-prod-20260902T090000Z",
+      "source_family": "terraform",
+      "status": "success",
+      "tenant_id": "acme"
+    },
+    {
+      "age_seconds": 1800,
+      "coverage": "complete",
+      "environment": "staging",
+      "freshness": "fresh",
+      "freshness_budget_seconds": 86400,
+      "observed_at": "2026-09-16T11:30:00Z",
+      "scope": {
+        "account_id": "222222222222",
+        "environment": "staging",
+        "region": "us-east-1",
+        "resource_types": [
+          "aws_instance",
+          "aws_db_instance"
+        ],
+        "workspace_id": "acme-staging-core"
+      },
+      "snapshot_id": "tf-acme-staging-20260916T113000Z",
+      "source_family": "terraform",
+      "status": "success",
+      "tenant_id": "acme"
+    },
+    {
+      "age_seconds": null,
+      "coverage": "unknown",
+      "environment": "prod",
+      "freshness": "not_observed",
+      "freshness_budget_seconds": 86400,
+      "observed_at": null,
+      "scope": {
+        "account_id": "111111111111",
+        "environment": "prod",
+        "region": "us-east-1",
+        "resource_types": [
+          "aws_instance",
+          "aws_db_instance"
+        ],
+        "workspace_id": "bravo-prod-core"
+      },
+      "snapshot_id": "tf-bravo-prod-20260916",
+      "source_family": "terraform",
+      "status": "not_provided",
+      "tenant_id": "bravo"
+    }
+  ],
+  "counts_by_category": {
+    "ambiguous_similarity": 3,
+    "conflicting_observation": 1,
+    "coverage": 1,
+    "freshness": 1,
+    "scope_collision": 1,
+    "tenant_scope": 1,
+    "unavailable_evidence": 2,
+    "unresolved_link": 4
+  },
+  "evaluation_time": "2026-09-16T12:00:00Z",
+  "issues": [
+    {
+      "category": "ambiguous_similarity",
+      "detail": "Resources aws:ec2:acme:111111111111:us-east-1:i-00000000000000104, aws:ec2:acme:111111111111:us-east-1:i-00000000000000105 all carry PrivateIpAddress='10.0.9.9' but differ on their scoped identity key, so they are kept as separate entities and no relationship is inferred from the shared value.",
+      "issue_id": "ISS-001",
+      "record_refs": [
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/3",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/3",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/3",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/3",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/4",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/4",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/4",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/4"
+      ],
+      "resolving_evidence": "nothing further is needed to keep them separate; a provider identifier (ARN) is already the join key. Only an authoritative ownership record could justify treating them as one.",
+      "subject": "('10.0.9.9', 'acme', 'prod')",
+      "summary": "2 distinct resources share PrivateIpAddress='10.0.9.9'"
+    },
+    {
+      "category": "ambiguous_similarity",
+      "detail": "Resources aws:ec2:acme:111111111111:us-east-1:i-00000000000000104, aws:ec2:acme:111111111111:us-east-1:i-00000000000000105 all carry tags.Name='batch-runner' but differ on their scoped identity key, so they are kept as separate entities and no relationship is inferred from the shared value.",
+      "issue_id": "ISS-002",
+      "record_refs": [
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/3",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/3",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/3",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/3",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/4",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/4",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/4",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/4"
+      ],
+      "resolving_evidence": "nothing further is needed to keep them separate; a provider identifier (ARN) is already the join key. Only an authoritative ownership record could justify treating them as one.",
+      "subject": "('batch-runner', 'acme', 'prod')",
+      "summary": "2 distinct resources share tags.Name='batch-runner'"
+    },
+    {
+      "category": "ambiguous_similarity",
+      "detail": "Resources aws:rds:acme:arn:aws:rds:us-east-1:111111111111:db:payments-db, aws:rds:acme:arn:aws:rds:us-east-1:222222222222:db:payments-db all carry DBInstanceIdentifier='p' but differ on their scoped identity key, so they are kept as separate entities and no relationship is inferred from the shared value.",
+      "issue_id": "ISS-003",
+      "record_refs": [
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/databases/0",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/databases/0",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/databases/0",
+        "aws_inventory.json#/collections/aws-acme-staging-20260916T115000Z/databases/0",
+        "aws_inventory.json#/collections/aws-acme-staging-20260916T115000Z/databases/0",
+        "aws_inventory.json#/collections/aws-acme-staging-20260916T115000Z/databases/0"
+      ],
+      "resolving_evidence": "nothing further is needed to keep them separate; a provider identifier (ARN) is already the join key. Only an authoritative ownership record could justify treating them as one.",
+      "subject": "payments-db",
+      "summary": "2 distinct resources share DBInstanceIdentifier='p'"
+    },
+    {
+      "category": "conflicting_observation",
+      "detail": "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/0 states Tags.operator_team=team-platform (observed 2026-09-16T11:50:00Z); terraform_state/acme-production.json#/resources/0 states state values.tags.operator_team=team-legacy-platform (observed 2026-09-02T09:00:00Z).",
+      "issue_id": "ISS-004",
+      "record_refs": [
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/0",
+        "terraform_state/acme-production.json#/resources/0"
+      ],
+      "resolving_evidence": "an authoritative team/ownership directory, or a change record explaining the rename or the legacy tag.",
+      "subject": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000101",
+      "summary": "infrastructure operator disagreed between cloud tag and state tag"
+    },
+    {
+      "category": "coverage",
+      "detail": "aws-bravo-prod-20260916T115200Z is complete within scope instance_ids=['i-00000000000000101'] and resource_types=['aws_instance']; it supports no claim about objects outside that filter, and its empty databases array is a scope statement rather than an absence claim.",
+      "issue_id": "ISS-005",
+      "record_refs": [
+        "aws_inventory.json#/collections/aws-bravo-prod-20260916T115200Z/instances/0"
+      ],
+      "resolving_evidence": "an unfiltered collection for this account and environment.",
+      "subject": "aws-bravo-prod-20260916T115200Z",
+      "summary": "inventory is complete only inside an explicit id filter"
+    },
+    {
+      "category": "freshness",
+      "detail": "tf-acme-prod-20260902T090000Z: observed 2026-09-02T09:00:00Z, age 1220400s, budget 86400s -> stale. Every claim sourced only from this collection is 1220400s older than the evaluation time and cannot establish the current state.",
+      "issue_id": "ISS-006",
+      "record_refs": [
+        "terraform_state/acme-production.json#/resources/0",
+        "terraform_state/acme-production.json#/resources/0",
+        "terraform_state/acme-production.json#/resources/1"
+      ],
+      "resolving_evidence": "a refreshed collection for the same scope with a newer observed_at.",
+      "subject": "tf-acme-prod-20260902T090000Z",
+      "summary": "observations in terraform collection are stale"
+    },
+    {
+      "category": "scope_collision",
+      "detail": "account/region/InstanceId 111111111111#us-east-1#i-00000000000000101 is reported by tenants acme, bravo with identical observed attributes. The manifest is trusted for tenant context, so both collections are kept as separate tenant-scoped entities and ownership is not adjudicated here.",
+      "issue_id": "ISS-007",
+      "record_refs": [
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/0",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/0",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/0",
+        "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/0",
+        "aws_inventory.json#/collections/aws-bravo-prod-20260916T115200Z/instances/0",
+        "aws_inventory.json#/collections/aws-bravo-prod-20260916T115200Z/instances/0",
+        "aws_inventory.json#/collections/aws-bravo-prod-20260916T115200Z/instances/0",
+        "aws_inventory.json#/collections/aws-bravo-prod-20260916T115200Z/instances/0"
+      ],
+      "resolving_evidence": "an authoritative tenancy/ownership ledger (which internal tenant is entitled to this AWS account), or per-collection account->tenant mappings that do not overlap.",
+      "subject": "111111111111#us-east-1#i-00000000000000101",
+      "summary": "one provider object is reported as complete under two tenants"
+    },
+    {
+      "category": "tenant_scope",
+      "detail": "catalog row service_catalog.csv#line=6 (tenant bravo) declares dependency arn:aws:rds:us-east-1:111111111111:db:payments-db, which no collection of this tenant reports; its resource types for this environment are not supplied. It is observed under tenant(s) acme, whose collections are not usable here.",
+      "issue_id": "ISS-008",
+      "record_refs": [
+        "service_catalog.csv#line=6"
+      ],
+      "resolving_evidence": "a tenancy/ownership ledger, or an inventory collection for this tenant whose resource_types include aws_db_instance.",
+      "subject": "cat:bravo:svc-payments-prod:prod",
+      "summary": "declared dependency is outside this tenant's supplied evidence"
+    },
+    {
+      "category": "unavailable_evidence",
+      "detail": "k8s-bravo-prod-20260916 (tenant bravo, workspace/cluster bravo-prod) has status=not_provided and coverage=unknown with no timestamps. This is not an empty inventory: questions about this source family for this tenant and environment are answered 'unavailable'.",
+      "issue_id": "ISS-009",
+      "record_refs": [],
+      "resolving_evidence": "the kubernetes payload for this scope, plus its observation time and coverage declaration.",
+      "subject": "k8s-bravo-prod-20260916",
+      "summary": "kubernetes collection was not provided"
+    },
+    {
+      "category": "unavailable_evidence",
+      "detail": "tf-bravo-prod-20260916 (tenant bravo, workspace/cluster bravo-prod-core) has status=not_provided and coverage=unknown with no timestamps. This is not an empty inventory: questions about this source family for this tenant and environment are answered 'unavailable'.",
+      "issue_id": "ISS-010",
+      "record_refs": [],
+      "resolving_evidence": "the terraform payload for this scope, plus its observation time and coverage declaration.",
+      "subject": "tf-bravo-prod-20260916",
+      "summary": "terraform collection was not provided"
+    },
+    {
+      "category": "unresolved_link",
+      "detail": "catalog row service_catalog.csv#line=4 points at acme-prod/production/reports-api; coverage=complete.",
+      "issue_id": "ISS-011",
+      "record_refs": [
+        "service_catalog.csv#line=4"
+      ],
+      "resolving_evidence": "the Deployment object itself, or a corrected catalog reference.",
+      "subject": "cat:acme:svc-reports-prod:prod",
+      "summary": "catalog workload reference does not resolve"
+    },
+    {
+      "category": "unresolved_link",
+      "detail": "catalog row service_catalog.csv#line=6 points at bravo-prod/production/payments-api; coverage=unavailable.",
+      "issue_id": "ISS-012",
+      "record_refs": [
+        "service_catalog.csv#line=6"
+      ],
+      "resolving_evidence": "the Deployment object itself, or a corrected catalog reference.",
+      "subject": "cat:bravo:svc-payments-prod:prod",
+      "summary": "catalog workload reference does not resolve"
+    },
+    {
+      "category": "unresolved_link",
+      "detail": "Node ip-10-0-9-9 has no spec.providerID. Its InternalIP matches 2 instance(s) in this tenant and environment (aws:ec2:acme:111111111111:us-east-1:i-00000000000000104, aws:ec2:acme:111111111111:us-east-1:i-00000000000000105); an IP address is a network address, not a provider identifier, so no link is asserted and the candidates are reported only.",
+      "issue_id": "ISS-013",
+      "record_refs": [
+        "k8s_resources.json#/collections/k8s-acme-prod-20260916T115500Z/items/2"
+      ],
+      "resolving_evidence": "spec.providerID on the Node, or a provider-side tag linking the instance to the cluster node.",
+      "subject": "k8s:acme:acme-prod:Node:-:ip-10-0-9-9",
+      "summary": "Node-to-instance link cannot be established"
+    },
+    {
+      "category": "unresolved_link",
+      "detail": "arn:aws:ec2:us-east-1:111111111111:instance/i-00000000000000099 is referenced by state but no cloud record with that ARN appears in the collection(s) aws-acme-prod-20260916T115000Z, which are complete within their declared scope as of their observation times",
+      "issue_id": "ISS-014",
+      "record_refs": [
+        "terraform_state/acme-production.json#/resources/2"
+      ],
+      "resolving_evidence": "a current cloud inventory observation for this scope: a resource present in state and absent from a complete inventory means either the state is out of date or the object is outside the inventory's account/region scope",
+      "subject": "tf:acme:acme-prod-core:module.ops.aws_instance.toolbox",
+      "summary": "state references a provider object the inventory does not report"
+    }
+  ],
+  "reading_guide": {
+    "ambiguous": "candidates exist but the evidence does not say which one applies",
+    "not_found_in_supplied_scope": "a collection declared complete for this scope did not report the thing; the claim is bounded by that scope and observation time",
+    "unavailable / scope_unavailable": "no collection covered the scope; no claim in either direction is supported"
+  },
+  "scope_covered": "every tenant and environment in the supplied manifest; per-question limitations are additionally repeated inside each answer",
+  "title": "Issues report: unresolved links, conflicting observations, freshness and coverage"
+}

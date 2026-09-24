@@ -1,0 +1,318 @@
+{
+  "asked": "for the production catalog application, show declared dependencies and the supported path from workloads through Kubernetes Nodes to cloud resources, and identify the application team and any separately evidenced infrastructure operator",
+  "evaluation_time": "2026-09-16T12:00:00Z",
+  "limitations": [
+    "A workload running on a Node that is backed by an instance establishes placement only. It does not establish that the workload depends on that instance's other workloads, nor that the instance's operator team is responsible for the application.",
+    "Service, endpoint, readiness and traffic relationships are outside the supplied extract, so a declared catalog dependency is the only dependency kind this answer can show."
+  ],
+  "query_scope": {
+    "application_name": "payments-api",
+    "environment": "prod",
+    "label": "manifest query_defaults",
+    "tenant_id": "acme"
+  },
+  "question": "B",
+  "results": [
+    {
+      "application": {
+        "application_team": {
+          "evidence": [
+            {
+              "coverage": "complete",
+              "freshness": "fresh",
+              "observed_at": "2026-09-16T11:40:00Z",
+              "record_ref": "service_catalog.csv#line=2",
+              "snapshot_id": "catalog-acme-20260916T114000Z",
+              "source_family": "catalog",
+              "source_instance_id": "catalog-acme",
+              "statement": "service_id=svc-payments-prod service_name=payments-api environment=prod owner_team=team-payments workload=acme-prod/production/payments-api declared_dependency_arn=arn:aws:rds:us-east-1:111111111111:db:payments-db"
+            }
+          ],
+          "kind": "source statement",
+          "meaning": "the catalog's statement of application-team responsibility",
+          "value": "team-payments"
+        },
+        "entity_id": "cat:acme:svc-payments-prod:prod",
+        "environment": "prod",
+        "service_id": "svc-payments-prod",
+        "service_name": "payments-api"
+      },
+      "declared_dependencies": [
+        {
+          "arn": "arn:aws:rds:us-east-1:111111111111:db:payments-db",
+          "evidence": [
+            {
+              "coverage": "complete",
+              "freshness": "fresh",
+              "observed_at": "2026-09-16T11:40:00Z",
+              "record_ref": "service_catalog.csv#line=2",
+              "snapshot_id": "catalog-acme-20260916T114000Z",
+              "source_family": "catalog",
+              "source_instance_id": "catalog-acme",
+              "statement": "catalog declared_dependency_arn=arn:aws:rds:us-east-1:111111111111:db:payments-db"
+            }
+          ],
+          "kind": "catalog source statement resolved to an observed resource",
+          "meaning": "the catalog states this dependency; the model did not infer it from co-location or naming",
+          "operator_team_statement": "team-data-platform",
+          "status": "found",
+          "target_entity_id": "aws:rds:acme:arn:aws:rds:us-east-1:111111111111:db:payments-db",
+          "target_environment": "prod",
+          "target_managed_by_terraform": [
+            {
+              "evidence_ref": "terraform_state/acme-production.json#/resources/3",
+              "observed_at": "2026-09-02T09:00:00Z",
+              "qualifiers": [
+                "state_observed_stale: 2026-09-02T09:00:00Z"
+              ],
+              "terraform_address": "aws_db_instance.payments",
+              "workspace_id": "acme-prod-core"
+            }
+          ],
+          "target_status": "available"
+        }
+      ],
+      "not_established": [
+        {
+          "claim": "workloads k8s:acme:acme-prod:Pod:production:billing-api-7c9d-a depend on payments-api (or the reverse), because they share Node k8s:acme:acme-prod:Node:-:ip-10-0-4-118",
+          "evidence_ref": "k8s_resources.json#/collections/k8s-acme-prod-20260916T115500Z/items/5",
+          "status": "not supported",
+          "why": "the only evidence is two pods scheduled onto the same node. Co-location is placement; a dependency claim needs a catalog statement or a service/endpoint record, and neither is present."
+        },
+        {
+          "claim": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000103 is a workload or dependency of the payments-api application",
+          "evidence_ref": "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/2",
+          "status": "not supported",
+          "why": "the match is on tags.Name, a display label. The catalog workload reference for this application names a Kubernetes Deployment, not this instance, and no stated key connects the instance to the application."
+        }
+      ],
+      "responsibility": {
+        "application_team": {
+          "evidenced_by": "catalog owner_team column",
+          "meaning": "responsibility for the application as declared by the service catalog",
+          "value": "team-payments"
+        },
+        "infrastructure_operator": {
+          "conflicts": [
+            {
+              "attribute": "operator_team",
+              "note": "the cloud tag says 'team-platform' and the Terraform state tag says 'team-legacy-platform' for the same instance. Both are statements by their own source at their own observation time; this model does not pick a winner.",
+              "resolved": false,
+              "statements": [
+                {
+                  "asserts_attribute": "operator_team",
+                  "coverage": "complete",
+                  "freshness": "fresh",
+                  "observed_at": "2026-09-16T11:50:00Z",
+                  "record_ref": "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/0",
+                  "snapshot_id": "aws-acme-prod-20260916T115000Z",
+                  "source_family": "aws",
+                  "source_instance_id": "aws-acme-prod",
+                  "statement": "Tags.operator_team=team-platform"
+                },
+                {
+                  "asserts_attribute": "operator_team",
+                  "coverage": "complete",
+                  "freshness": "stale",
+                  "observed_at": "2026-09-02T09:00:00Z",
+                  "record_ref": "terraform_state/acme-production.json#/resources/0",
+                  "snapshot_id": "tf-acme-prod-20260902T090000Z",
+                  "source_family": "terraform",
+                  "source_instance_id": "tf-acme-prod",
+                  "statement": "state values.tags.operator_team=team-legacy-platform"
+                }
+              ],
+              "subject_id": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000101"
+            }
+          ],
+          "distinct_teams": [
+            "team-legacy-platform",
+            "team-platform"
+          ],
+          "kind": "source statements, not a derived conclusion",
+          "meaning": "each value is what one source stated about infrastructure operation for the instance the workload runs on, at that source's observation time",
+          "unproven": "which team operates the application's own deployment pipeline is not stated by any supplied source",
+          "values": [
+            {
+              "about": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000101",
+              "freshness": "stale",
+              "kind": "source statement",
+              "observed_at": "2026-09-02T09:00:00Z",
+              "qualifiers": [
+                "state_observed_stale: 2026-09-02T09:00:00Z"
+              ],
+              "record_ref": "terraform_state/acme-production.json#/resources/0",
+              "source": "terraform state tag values.tags.operator_team",
+              "statement": "state values.tags.operator_team=team-legacy-platform",
+              "value": "team-legacy-platform"
+            },
+            {
+              "about": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000101",
+              "freshness": "fresh",
+              "kind": "source statement",
+              "observed_at": "2026-09-16T11:50:00Z",
+              "record_ref": "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/0",
+              "source": "cloud inventory tag Tags.operator_team",
+              "statement": "Tags.operator_team=team-platform",
+              "value": "team-platform"
+            },
+            {
+              "about": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000102",
+              "freshness": "fresh",
+              "kind": "source statement",
+              "observed_at": "2026-09-16T11:50:00Z",
+              "record_ref": "aws_inventory.json#/collections/aws-acme-prod-20260916T115000Z/instances/1",
+              "source": "cloud inventory tag Tags.operator_team",
+              "statement": "Tags.operator_team=team-platform",
+              "value": "team-platform"
+            },
+            {
+              "about": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000102",
+              "freshness": "stale",
+              "kind": "source statement",
+              "observed_at": "2026-09-02T09:00:00Z",
+              "qualifiers": [
+                "state_observed_stale: 2026-09-02T09:00:00Z"
+              ],
+              "record_ref": "terraform_state/acme-production.json#/resources/1",
+              "source": "terraform state tag values.tags.operator_team",
+              "statement": "state values.tags.operator_team=team-platform",
+              "value": "team-platform"
+            }
+          ]
+        }
+      },
+      "workload_path": {
+        "cloud_resources_reached": [
+          "aws:ec2:acme:111111111111:us-east-1:i-00000000000000101",
+          "aws:ec2:acme:111111111111:us-east-1:i-00000000000000102"
+        ],
+        "ends": [
+          {
+            "at": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000101",
+            "last_relationship": "hosts",
+            "terraform_evidence": [
+              {
+                "address": "module.workers.aws_instance.pool[0]",
+                "observed_at": "2026-09-02T09:00:00Z",
+                "qualifiers": [
+                  "state_observed_stale: 2026-09-02T09:00:00Z"
+                ],
+                "status": "found",
+                "workspace_id": "acme-prod-core"
+              }
+            ],
+            "why_it_ends": "the extract supplies no object that a cloud resource points at next: VPCs, subnets, network attachments and volume mappings are outside the selected fields, so no further hop is defined rather than an empty one"
+          },
+          {
+            "at": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000102",
+            "last_relationship": "hosts",
+            "terraform_evidence": [
+              {
+                "address": "module.workers.aws_instance.pool[1]",
+                "observed_at": "2026-09-02T09:00:00Z",
+                "qualifiers": [
+                  "state_observed_stale: 2026-09-02T09:00:00Z"
+                ],
+                "status": "found",
+                "workspace_id": "acme-prod-core"
+              }
+            ],
+            "why_it_ends": "the extract supplies no object that a cloud resource points at next: VPCs, subnets, network attachments and volume mappings are outside the selected fields, so no further hop is defined rather than an empty one"
+          }
+        ],
+        "hops": [
+          {
+            "basis": "catalog (cluster_id, namespace, deployment_name) == Kubernetes Deployment name, same tenant and cluster",
+            "evidence_ref": "service_catalog.csv#line=2",
+            "from": "cat:acme:svc-payments-prod:prod",
+            "kind": "runs_workload",
+            "meaning": "the catalog's declared workload reference for this application",
+            "observed_at": "2026-09-16T11:40:00Z",
+            "qualifiers": [],
+            "to": "k8s:acme:acme-prod:Deployment:production:payments-api"
+          },
+          {
+            "basis": "metadata.ownerReferences[controller].uid == 88cf0def-a10d-596c-9a94-c08b2a96d271",
+            "evidence_ref": "k8s_resources.json#/collections/k8s-acme-prod-20260916T115500Z/items/4",
+            "from": "k8s:acme:acme-prod:ReplicaSet:production:payments-api-7c9d",
+            "kind": "controlled_by",
+            "meaning": "Kubernetes controller ownership: the source object controls the lifecycle of the target, stated by an ownerReference UID",
+            "observed_at": "2026-09-16T11:55:00Z",
+            "qualifiers": [],
+            "to": "k8s:acme:acme-prod:Deployment:production:payments-api"
+          },
+          {
+            "basis": "metadata.ownerReferences[controller].uid == 94d46493-efc9-53f2-ac42-343437b41fe8",
+            "evidence_ref": "k8s_resources.json#/collections/k8s-acme-prod-20260916T115500Z/items/5",
+            "from": "k8s:acme:acme-prod:Pod:production:payments-api-7c9d-a",
+            "kind": "controlled_by",
+            "meaning": "Kubernetes controller ownership: the source object controls the lifecycle of the target, stated by an ownerReference UID",
+            "observed_at": "2026-09-16T11:55:00Z",
+            "qualifiers": [],
+            "to": "k8s:acme:acme-prod:ReplicaSet:production:payments-api-7c9d"
+          },
+          {
+            "basis": "metadata.ownerReferences[controller].uid == 94d46493-efc9-53f2-ac42-343437b41fe8",
+            "evidence_ref": "k8s_resources.json#/collections/k8s-acme-prod-20260916T115500Z/items/6",
+            "from": "k8s:acme:acme-prod:Pod:production:payments-api-7c9d-b",
+            "kind": "controlled_by",
+            "meaning": "Kubernetes controller ownership: the source object controls the lifecycle of the target, stated by an ownerReference UID",
+            "observed_at": "2026-09-16T11:55:00Z",
+            "qualifiers": [],
+            "to": "k8s:acme:acme-prod:ReplicaSet:production:payments-api-7c9d"
+          },
+          {
+            "basis": "spec.nodeName=ip-10-0-4-118 within cluster acme-prod",
+            "evidence_ref": "k8s_resources.json#/collections/k8s-acme-prod-20260916T115500Z/items/5",
+            "from": "k8s:acme:acme-prod:Pod:production:payments-api-7c9d-a",
+            "kind": "scheduled_on",
+            "meaning": "placement only: this pod is scheduled onto this node",
+            "observed_at": "2026-09-16T11:55:00Z",
+            "qualifiers": [],
+            "to": "k8s:acme:acme-prod:Node:-:ip-10-0-4-118"
+          },
+          {
+            "basis": "spec.nodeName=ip-10-0-4-119 within cluster acme-prod",
+            "evidence_ref": "k8s_resources.json#/collections/k8s-acme-prod-20260916T115500Z/items/6",
+            "from": "k8s:acme:acme-prod:Pod:production:payments-api-7c9d-b",
+            "kind": "scheduled_on",
+            "meaning": "placement only: this pod is scheduled onto this node",
+            "observed_at": "2026-09-16T11:55:00Z",
+            "qualifiers": [],
+            "to": "k8s:acme:acme-prod:Node:-:ip-10-0-4-119"
+          },
+          {
+            "basis": "spec.providerID aws:///us-east-1a/i-00000000000000101 resolved against cluster account 111111111111 and region us-east-1 from the manifest",
+            "evidence_ref": "k8s_resources.json#/collections/k8s-acme-prod-20260916T115500Z/items/0",
+            "from": "k8s:acme:acme-prod:Node:-:ip-10-0-4-118",
+            "kind": "hosts",
+            "meaning": "the node object's provider reference identifies this cloud instance",
+            "observed_at": "2026-09-16T11:55:00Z",
+            "qualifiers": [],
+            "to": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000101"
+          },
+          {
+            "basis": "spec.providerID aws:///us-east-1a/i-00000000000000102 resolved against cluster account 111111111111 and region us-east-1 from the manifest",
+            "evidence_ref": "k8s_resources.json#/collections/k8s-acme-prod-20260916T115500Z/items/1",
+            "from": "k8s:acme:acme-prod:Node:-:ip-10-0-4-119",
+            "kind": "hosts",
+            "meaning": "the node object's provider reference identifies this cloud instance",
+            "observed_at": "2026-09-16T11:55:00Z",
+            "qualifiers": [],
+            "to": "aws:ec2:acme:111111111111:us-east-1:i-00000000000000102"
+          }
+        ],
+        "termination_points": [],
+        "workloads_found": [
+          "k8s:acme:acme-prod:Node:-:ip-10-0-4-118",
+          "k8s:acme:acme-prod:Node:-:ip-10-0-4-119"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "applications_matched": 1,
+    "note": "matched on catalog service_name within the tenant and environment; kubernetes label and display-name similarity is not treated as identity"
+  }
+}

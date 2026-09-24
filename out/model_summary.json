@@ -1,0 +1,30 @@
+{
+  "counts": {
+    "catalog_application": 5,
+    "cloud_database": 2,
+    "cloud_instance": 8,
+    "conflicts": 1,
+    "edge:controlled_by": 7,
+    "edge:data_reference": 1,
+    "edge:declares_dependency": 2,
+    "edge:hosts": 3,
+    "edge:managed_binding": 5,
+    "edge:runs_workload": 3,
+    "edge:scheduled_on": 4,
+    "k8s_deployment": 3,
+    "k8s_node": 4,
+    "k8s_pod": 4,
+    "k8s_replicaset": 3,
+    "terraform_resource": 7,
+    "unresolved_links": 5
+  },
+  "evaluation_time": "2026-09-16T12:00:00Z",
+  "identity_keys": {
+    "catalog_application": "tenant + service_id + declared environment",
+    "cloud_database": "tenant + DBInstanceArn",
+    "cloud_instance": "tenant + account_id + region + InstanceId",
+    "kubernetes_incarnation": "tenant + cluster_id + metadata.uid",
+    "kubernetes_object": "tenant + cluster_id + kind + namespace + name",
+    "terraform_resource": "tenant + workspace_id + address"
+  }
+}
